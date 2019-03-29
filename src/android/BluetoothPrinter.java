@@ -158,7 +158,7 @@ public class BluetoothPrinter extends CordovaPlugin {
     }
 	*/
     public void test(String test,JSONArray content){
-		if (test=="content){
+		if (test=="content"){
 			try{
 				JSONObject obj1 = new JSONObject();
 				obj1.put("type","text");

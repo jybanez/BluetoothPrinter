@@ -107,6 +107,11 @@ public class BluetoothPrinter extends CordovaPlugin {
         try {
             Log.d(TAG, action);
             Log.d(TAG, args.toString());
+			if (action=="print") {
+				Log.d(TAG,args.toString());
+                   print(args);
+			}
+			/*
             switch (action) {
                 //case "test":
                 //    test(args.get(0).toString(),args.get(1).toString());
@@ -116,7 +121,7 @@ public class BluetoothPrinter extends CordovaPlugin {
                     print(args);
                     break;
             }
-
+			*/
             callbackContext.success(args);
         } catch (Exception e) {
             String errMsg = e.getMessage();
@@ -153,6 +158,28 @@ public class BluetoothPrinter extends CordovaPlugin {
     }
 	*/
     public void test(String test,JSONArray content){
+		if (test=="content){
+			try{
+				JSONObject obj1 = new JSONObject();
+				obj1.put("type","text");
+				obj1.put("size","FONT_SIZE_NORMAL");
+				obj1.put("alignment","ALIGN_RIGHT");
+				obj1.put("content","ABC123");
+				content.put(obj1);
+
+				JSONObject obj2 = new JSONObject();
+				obj2.put("type","text");
+				obj2.put("alignment","ALIGN_LEFT");
+				obj2.put("size","FONT_SIZE_LARGE");
+				obj2.put("content","XXX222");
+				content.put(obj2);
+
+				print(content);
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+		}
+		/*
         switch(test){
             case "content":
                 try{
@@ -176,6 +203,7 @@ public class BluetoothPrinter extends CordovaPlugin {
                 }
                 break;
         }
+		*/
     }
 
     private void LoadBluetoothPrinter() {

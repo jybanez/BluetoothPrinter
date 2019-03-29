@@ -35,6 +35,5 @@
 		<source-file src="src/android/Utils/BitMapUtil.java" target-dir="src/com/cordova/printer/bluetooth/Utils" />
 		<source-file src="src/android/Utils/BluetoothUtil.java" target-dir="src/com/cordova/printer/bluetooth/Utils" />
 		<source-file src="src/android/Utils/ESCUtil.java" target-dir="src/com/cordova/printer/bluetooth/Utils" />
-		<source-file src="src/android/Utils/HandlerUtils.java" target-dir="src/com/cordova/printer/bluetooth/Utils" />
    </platform>
 </plugin>

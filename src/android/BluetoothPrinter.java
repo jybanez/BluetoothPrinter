@@ -266,6 +266,75 @@ public class BluetoothPrinter extends CordovaPlugin {
                     for(int i=0;i<content.length();i++) {
                         try {
                             JSONObject item = content.getJSONObject(i);
+							if (item.getString("type")=="image") {
+								URL url = new URL(item.getString("content"));
+								Bitmap bitmap = BitmapFactory.decodeStream((InputStream)url.getContent());
+								output.write(BitMapUtil.getRasterBmpData(bitmap, 384, 0));
+							} else if (item.getString("type")=="text"){
+								if (item.has("size")) {
+									try {
+										switch(item.getString("size")) {
+											case "FONT_SIZE_NORMAL":
+												output.write(ESCUtil.fontSizeSet(FONT_SIZE_NORMAL));
+												break;
+											case "FONT_SIZE_TALL":
+												output.write(ESCUtil.fontSizeSet(FONT_SIZE_TALL));
+												break;
+											case "FONT_SIZE_WIDE":
+												output.write(ESCUtil.fontSizeSet(FONT_SIZE_WIDE));
+												break;
+											case "FONT_SIZE_LARGE":
+												output.write(ESCUtil.fontSizeSet(FONT_SIZE_LARGE));
+												break;
+											default:
+												output.write(ESCUtil.fontSizeSet(FONT_SIZE_NORMAL));
+												break;
+										}
+									} catch (IOException e) {
+										e.printStackTrace();
+									}
+								}
+								if (item.has("alignment")) {
+									try {
+										if (item.getString("alignment")=="ALIGN_LEFT") {
+											output.write(ESCUtil.alignMode(ALIGN_LEFT));
+										} else if (item.getString("alignment")=="ALIGN_CENTER") {
+											output.write(ESCUtil.alignMode(ALIGN_CENTER));
+										} else if (item.getString("alignment")=="ALIGN_RIGHT") {
+											output.write(ESCUtil.alignMode(ALIGN_RIGHT);
+										} else {
+											output.write(ESCUtil.alignMode(ALIGN_LEFT));
+										}
+										/*
+										switch(item.getString("alignment")) {
+											case "ALIGN_LEFT":
+												output.write(ESCUtil.alignMode(ALIGN_LEFT));
+												break;
+											case "ALIGN_CENTER":
+												output.write(ESCUtil.alignMode(ALIGN_CENTER));
+												break;
+											case "ALIGN_RIGHT":
+												output.write(ESCUtil.alignMode(ALIGN_RIGHT));
+												break;
+											default:
+												output.write(ESCUtil.alignMode(ALIGN_LEFT));
+												break;
+										}
+										*/
+									} catch (IOException e) {
+										e.printStackTrace();
+									}
+								}
+								if (item.has("content")) {
+									try {
+										output.write(item.getString("content").getBytes("UTF-8"));
+										output.write("\n".getBytes("UTF-8"));
+									} catch (IOException e) {
+										e.printStackTrace();
+									}
+								}
+							}
+							/*
                             switch(item.getString("type")){
 								case "image":
                                     URL url = new URL(item.getString("content"));
@@ -326,6 +395,7 @@ public class BluetoothPrinter extends CordovaPlugin {
                                     }
                                     break;
                             }
+							*/
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

@@ -273,7 +273,7 @@ public class BluetoothPrinter extends CordovaPlugin {
 							} else if (item.getString("type")=="text"){
 								if (item.has("size")) {
 									try {
-										if (item.getString("size")=="FONT_SIZE_NORMAL) {
+										if (item.getString("size")=="FONT_SIZE_NORMAL") {
 											output.write(ESCUtil.fontSizeSet(FONT_SIZE_NORMAL));
 										} else if (item.getString("size")=="FONT_SIZE_TALL") {
 											output.write(ESCUtil.fontSizeSet(FONT_SIZE_TALL));

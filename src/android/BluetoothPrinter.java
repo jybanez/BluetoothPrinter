@@ -232,7 +232,7 @@ public class BluetoothPrinter extends CordovaPlugin {
         Toast.makeText(context, "Bluetooth Printer Loaded!", Toast.LENGTH_LONG).show();
     }
 
-    public void print(JSONArray content){
+    public void print(final JSONArray content){
         ThreadPoolManager.getInstance().executeTask(new Runnable() {
             @Override
             public void run() {

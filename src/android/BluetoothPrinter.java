@@ -273,6 +273,18 @@ public class BluetoothPrinter extends CordovaPlugin {
 							} else if (item.getString("type")=="text"){
 								if (item.has("size")) {
 									try {
+										if (item.getString("size")=="FONT_SIZE_NORMAL) {
+											output.write(ESCUtil.fontSizeSet(FONT_SIZE_NORMAL));
+										} else if (item.getString("size")=="FONT_SIZE_TALL") {
+											output.write(ESCUtil.fontSizeSet(FONT_SIZE_TALL));
+										} else if (item.getString("size")=="FONT_SIZE_WIDE") {
+											output.write(ESCUtil.fontSizeSet(FONT_SIZE_WIDE));
+										} else if (item.getString("size")=="FONT_SIZE_LARGE") {
+											output.write(ESCUtil.fontSizeSet(FONT_SIZE_LARGE));
+										} else {
+											output.write(ESCUtil.fontSizeSet(FONT_SIZE_NORMAL));
+										}
+										/*
 										switch(item.getString("size")) {
 											case "FONT_SIZE_NORMAL":
 												output.write(ESCUtil.fontSizeSet(FONT_SIZE_NORMAL));
@@ -290,6 +302,7 @@ public class BluetoothPrinter extends CordovaPlugin {
 												output.write(ESCUtil.fontSizeSet(FONT_SIZE_NORMAL));
 												break;
 										}
+										*/
 									} catch (IOException e) {
 										e.printStackTrace();
 									}

@@ -301,7 +301,7 @@ public class BluetoothPrinter extends CordovaPlugin {
 										} else if (item.getString("alignment")=="ALIGN_CENTER") {
 											output.write(ESCUtil.alignMode(ALIGN_CENTER));
 										} else if (item.getString("alignment")=="ALIGN_RIGHT") {
-											output.write(ESCUtil.alignMode(ALIGN_RIGHT);
+											output.write(ESCUtil.alignMode(ALIGN_RIGHT));
 										} else {
 											output.write(ESCUtil.alignMode(ALIGN_LEFT));
 										}

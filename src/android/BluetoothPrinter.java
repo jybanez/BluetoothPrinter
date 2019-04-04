@@ -107,7 +107,7 @@ public class BluetoothPrinter extends CordovaPlugin {
         try {
             Log.d(TAG, action);
             Log.d(TAG, args.toString());
-			if (action=="print") {
+			if (action.equals("print")) {
 				Log.d(TAG,args.toString());
                    print(args);
 			}
@@ -266,20 +266,20 @@ public class BluetoothPrinter extends CordovaPlugin {
                     for(int i=0;i<content.length();i++) {
                         try {
                             JSONObject item = content.getJSONObject(i);
-							if (item.getString("type")=="image") {
+							if (item.getString("type").equals("image")) {
 								URL url = new URL(item.getString("content"));
 								Bitmap bitmap = BitmapFactory.decodeStream((InputStream)url.getContent());
 								output.write(BitMapUtil.getRasterBmpData(bitmap, 384, 0));
-							} else if (item.getString("type")=="text"){
+							} else if (item.getString("type").equals("text")){
 								if (item.has("size")) {
 									try {
-										if (item.getString("size")=="FONT_SIZE_NORMAL") {
+										if (item.getString("size").equals("FONT_SIZE_NORMAL")) {
 											output.write(ESCUtil.fontSizeSet(FONT_SIZE_NORMAL));
-										} else if (item.getString("size")=="FONT_SIZE_TALL") {
+										} else if (item.getString("size").equals("FONT_SIZE_TALL")) {
 											output.write(ESCUtil.fontSizeSet(FONT_SIZE_TALL));
-										} else if (item.getString("size")=="FONT_SIZE_WIDE") {
+										} else if (item.getString("size").equals("FONT_SIZE_WIDE")) {
 											output.write(ESCUtil.fontSizeSet(FONT_SIZE_WIDE));
-										} else if (item.getString("size")=="FONT_SIZE_LARGE") {
+										} else if (item.getString("size").equals("FONT_SIZE_LARGE")) {
 											output.write(ESCUtil.fontSizeSet(FONT_SIZE_LARGE));
 										} else {
 											output.write(ESCUtil.fontSizeSet(FONT_SIZE_NORMAL));
@@ -309,11 +309,11 @@ public class BluetoothPrinter extends CordovaPlugin {
 								}
 								if (item.has("alignment")) {
 									try {
-										if (item.getString("alignment")=="ALIGN_LEFT") {
+										if (item.getString("alignment").equals("ALIGN_LEFT")) {
 											output.write(ESCUtil.alignMode(ALIGN_LEFT));
-										} else if (item.getString("alignment")=="ALIGN_CENTER") {
+										} else if (item.getString("alignment").equals("ALIGN_CENTER")) {
 											output.write(ESCUtil.alignMode(ALIGN_CENTER));
-										} else if (item.getString("alignment")=="ALIGN_RIGHT") {
+										} else if (item.getString("alignment").equals("ALIGN_RIGHT")) {
 											output.write(ESCUtil.alignMode(ALIGN_RIGHT));
 										} else {
 											output.write(ESCUtil.alignMode(ALIGN_LEFT));

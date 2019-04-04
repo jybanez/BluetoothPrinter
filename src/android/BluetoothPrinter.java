@@ -284,25 +284,6 @@ public class BluetoothPrinter extends CordovaPlugin {
 										} else {
 											output.write(ESCUtil.fontSizeSet(FONT_SIZE_NORMAL));
 										}
-										/*
-										switch(item.getString("size")) {
-											case "FONT_SIZE_NORMAL":
-												output.write(ESCUtil.fontSizeSet(FONT_SIZE_NORMAL));
-												break;
-											case "FONT_SIZE_TALL":
-												output.write(ESCUtil.fontSizeSet(FONT_SIZE_TALL));
-												break;
-											case "FONT_SIZE_WIDE":
-												output.write(ESCUtil.fontSizeSet(FONT_SIZE_WIDE));
-												break;
-											case "FONT_SIZE_LARGE":
-												output.write(ESCUtil.fontSizeSet(FONT_SIZE_LARGE));
-												break;
-											default:
-												output.write(ESCUtil.fontSizeSet(FONT_SIZE_NORMAL));
-												break;
-										}
-										*/
 									} catch (IOException e) {
 										e.printStackTrace();
 									}
@@ -318,22 +299,6 @@ public class BluetoothPrinter extends CordovaPlugin {
 										} else {
 											output.write(ESCUtil.alignMode(ALIGN_LEFT));
 										}
-										/*
-										switch(item.getString("alignment")) {
-											case "ALIGN_LEFT":
-												output.write(ESCUtil.alignMode(ALIGN_LEFT));
-												break;
-											case "ALIGN_CENTER":
-												output.write(ESCUtil.alignMode(ALIGN_CENTER));
-												break;
-											case "ALIGN_RIGHT":
-												output.write(ESCUtil.alignMode(ALIGN_RIGHT));
-												break;
-											default:
-												output.write(ESCUtil.alignMode(ALIGN_LEFT));
-												break;
-										}
-										*/
 									} catch (IOException e) {
 										e.printStackTrace();
 									}
@@ -345,6 +310,26 @@ public class BluetoothPrinter extends CordovaPlugin {
 									} catch (IOException e) {
 										e.printStackTrace();
 									}
+								}
+							} else if (item.getString("type").equals("line")) {
+								try {
+									output.write("--------------------------------".getBytes("UTF-8"));
+									output.write("\n".getBytes("UTF-8"));
+								} catch(IOException e) {
+									e.printStackTrace();
+								}
+							} else if (item.getString("type").equals("doubleline")) {
+								try {
+									output.write("================================".getBytes("UTF-8"));
+									output.write("\n".getBytes("UTF-8"));
+								} catch(IOException e) {
+									e.printStackTrace();
+								}
+							} else if (item.getString("type").equals("newline")) {
+								try {
+									output.write("\n".getBytes("UTF-8"));
+								} catch(IOException e) {
+									e.printStackTrace();
 								}
 							}
 							/*
